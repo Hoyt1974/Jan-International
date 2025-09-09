@@ -99,3 +99,40 @@ button:hover{filter:brightness(1.08)}
 
 /* Tidy up the hero margin on small screens */
 @media (max-width:640px){ .hero-inner{margin:0 !important} }
+/* ---------- Why Smokies ---------- */
+#why .why-list {
+  margin: 16px 0 24px;
+  padding-left: 1.1em;
+}
+#why .why-list li {
+  margin: 8px 0;
+}
+
+/* 3-up responsive grid used here (reusable) */
+.grid-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 960px) {
+  .grid-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid-tiles { grid-template-columns: 1fr; }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: 48px;
+  padding: 24px 0 36px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: radial-gradient(1200px 400px at 50% -200px, rgba(255,255,255,0.06), transparent);
+}
+.footer-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.footer-col.small { font-size: 0.9rem; }

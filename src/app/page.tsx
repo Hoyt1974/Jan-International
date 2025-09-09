@@ -1,16 +1,18 @@
-// app/page.tsx
+// src/app/page.tsx
 import Image from "next/image";
-import Link from "next/link";
 
-import Hero from "../components/Hero";
-import Contact from "../components/Contact";
-import Gallery from "../components/Gallery"; // you already have this
-import Featured from "../components/Featured"; // you already have this
-import Services from "../components/Services"; // you already have this
+import Hero from "../components/Hero";              // you created this earlier
+import Featured from "../components/Featured";      // your existing section
+import Gallery from "../components/Gallery";        // your existing section
+import Services from "../components/Services";      // your existing section
+import Contact from "../components/Contact";        // your existing section
+import WhySmokies from "../components/WhySmokies";  // NEW
+import Footer from "../components/Footer";          // NEW
 
 export const metadata = {
   title: "Jan International — Smoky Mountain Realty",
-  description: "Landmark estates and lodging in the Smokies for international buyers.",
+  description:
+    "Landmark estates and lodging in the Smokies for international buyers and local dreamers alike.",
 };
 
 export default function Page() {
@@ -19,29 +21,23 @@ export default function Page() {
       {/* HERO */}
       <Hero />
 
-      <section className="section">
-        <div className="container">
-          <Featured />
-        </div>
-      </section>
+      {/* FEATURED PROPERTY (Buckhorn) */}
+      <Featured />
 
-      <section id="gallery" className="section">
-        <div className="container">
-          <h2>Photo Gallery</h2>
-          <div className="gallery-grid">
-            <Gallery />
-          </div>
-        </div>
-      </section>
+      {/* WHY THE SMOKIES (NEW) */}
+      <WhySmokies />
 
-      <section id="services" className="section">
-        <div className="container">
-          <Services />
-        </div>
-      </section>
+      {/* GALLERY */}
+      <Gallery />
+
+      {/* SERVICES */}
+      <Services />
 
       {/* CONTACT */}
       <Contact />
+
+      {/* FOOTER (NEW) */}
+      <Footer />
     </main>
   );
 }
