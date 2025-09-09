@@ -1,91 +1,101 @@
-/* ===== Root Variables (easy theme changes later) ===== */
-:root {
-  --bg: #0b1220;       /* Deep navy background */
-  --text: #ffffff;     /* Default text */
-  --muted: #a3b223;    /* Accent / brand color */
-  --card-bg: rgba(255,255,255,0.02);
-  --card-border: rgba(255,255,255,0.08);
+/* === Reset & tokens === */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg0:#0e1620;
+  --bg1:#0f1b29;
+  --card:#132131;
+  --text:#eef2f6;
+  --muted:#9eb0c6;
+  --brand:#89b3ff;
+  --ring:rgba(137,179,255,.45);
+  --border:rgba(255,255,255,.08);
+  --shadow:0 8px 28px rgba(0,0,0,.35);
 }
 
-/* ===== Global Reset ===== */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+html,body{height:100%}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
+               Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1800px 800px at 30% 20%, #0d1a2b 0%, var(--bg0) 45%, var(--bg1) 100%);
+  color:var(--text);
+  line-height:1.5;
 }
 
-html, body {
-  height: 100%;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+/* Links */
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Layout */
+.section{padding:48px 0; position:relative;}
+.container{width:min(1100px,92%); margin:0 auto;}
+.section h2{margin:0 0 14px; line-height:1.2}
+
+/* Cards/tiles */
+.tile{
+  background: rgba(255,255,255,.02);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px;
+  box-shadow:var(--shadow);
+  margin-bottom:24px;
 }
 
-/* ===== Anchor cleanup ===== */
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+/* Images */
+img, .tile img, .gallery-grid img{display:block;width:100%;height:auto;border-radius:12px}
+
+/* Gallery grid */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:20px;
+  align-items:start;
 }
 
-/* ===== Layout sanity for all sections ===== */
-.section {
-  padding: 48px 0;              /* vertical breathing room */
-  position: relative;           /* prevent weird overlaps */
-}
+/* Safety: keep sections from colliding */
+section,.section,main{position:relative;clear:both}
 
-.container {
-  width: min(1100px, 92%);
-  margin: 0 auto;
+/* ==== HERO ==== */
+.hero{
+  position:relative;
+  min-height:52vh;
+  display:flex;
+  align-items:flex-end;
+  isolation:isolate;
+  background: url("/assets/buckhorn1.jpg") center/cover no-repeat;
+  border-bottom:1px solid var(--border);
 }
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.55) 85%);
+  z-index:0;
+}
+.hero-inner{position:relative;z-index:1;padding:48px 0}
+.hero h1{font-size:clamp(2rem, 4vw, 3.2rem); font-weight:800; letter-spacing:.2px}
+.hero p{margin-top:10px; color:var(--muted); font-size:clamp(1rem, 1.6vw, 1.15rem)}
 
-.section h2 {
-  margin: 0 0 16px;
-  line-height: 1.2;
-}
+/* ==== CONTACT FORM ==== */
+.contact{padding-top:24px}
+.form{display:grid; gap:14px}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media (max-width:700px){ .row{grid-template-columns:1fr} }
 
-/* ===== Cards / tiles ===== */
-.tile {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-  margin-bottom: 24px;
+label{font-size:.9rem; color:var(--muted)}
+input, textarea, button{
+  font:inherit; color:var(--text);
 }
+input,textarea{
+  width:100%; padding:12px 14px; border-radius:10px;
+  background:rgba(255,255,255,.04); border:1px solid var(--border);
+  outline:none;
+}
+input:focus,textarea:focus{box-shadow:0 0 0 4px var(--ring); border-color:transparent}
+button{
+  cursor:pointer; padding:12px 18px; border-radius:10px; border:1px solid var(--border);
+  background:linear-gradient(180deg,#1d2f49,#132131);
+}
+button:hover{filter:brightness(1.08)}
+.note{margin-top:10px; color:var(--muted); font-size:.95rem}
 
-/* Images behave (no overflow/stretching) */
-.tile img,
-.gallery-grid img,
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-/* ===== Gallery grid ===== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-  align-items: start;
-}
-
-/* Extra guard: prevent section collapse */
-section, .section, main {
-  position: relative;
-  clear: both;
-}
-
-/* ===== Hero fixes on mobile ===== */
-@media (max-width: 640px) {
-  .hero-inner {
-    margin: 0 !important;
-  }
-}
+/* Tidy up the hero margin on small screens */
+@media (max-width:640px){ .hero-inner{margin:0 !important} }

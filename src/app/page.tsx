@@ -1,36 +1,46 @@
-import Featured from "../components/Featured";
-import Gallery from "../components/Gallery";
-import Services from "../components/Services";
+// app/page.tsx
+import Image from "next/image";
+import Link from "next/link";
+
+import Hero from "../components/Hero";
 import Contact from "../components/Contact";
-import SeoJsonLd from "../components/SeoJsonLd";
+import Gallery from "../components/Gallery"; // you already have this
+import Featured from "../components/Featured"; // you already have this
+import Services from "../components/Services"; // you already have this
 
-export default function Home() {
+export const metadata = {
+  title: "Jan International — Smoky Mountain Realty",
+  description: "Landmark estates and lodging in the Smokies for international buyers.",
+};
+
+export default function Page() {
   return (
-    <main id="top">
-      <SeoJsonLd />
+    <main>
+      {/* HERO */}
+      <Hero />
 
-      {/* Hero */}
-      <section className="hero">
-        <div className="overlay"></div>
-        <div className="container hero-inner">
-          <h1>Southern Hospitality. Global Welcome.</h1>
-          <p>
-            Discover landmark estates in the Great Smoky Mountains — curated for international buyers and
-            local dreamers alike.
-          </p>
+      <section className="section">
+        <div className="container">
+          <Featured />
         </div>
       </section>
 
-      {/* Featured listing */}
-      <Featured />
+      <section id="gallery" className="section">
+        <div className="container">
+          <h2>Photo Gallery</h2>
+          <div className="gallery-grid">
+            <Gallery />
+          </div>
+        </div>
+      </section>
 
-      {/* Gallery */}
-      <Gallery />
+      <section id="services" className="section">
+        <div className="container">
+          <Services />
+        </div>
+      </section>
 
-      {/* Services */}
-      <Services />
-
-      {/* Contact */}
+      {/* CONTACT */}
       <Contact />
     </main>
   );
