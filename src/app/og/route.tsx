@@ -1,5 +1,17 @@
 import { ImageResponse } from "next/og";
 import { site, buckhorn } from "../../lib/seo";
+import { NextResponse } from "next/server";
+
+export async function POST(req: Request) {
+  const formData = await req.formData();
+  const name = String(formData.get("name") || "");
+  const email = String(formData.get("email") || "");
+  const message = String(formData.get("message") || "");
+
+  console.log("[CONTACT]", { name, email, message });
+
+  return NextResponse.json({ ok: true });
+}
 
 export const runtime = "edge";
 export const alt = site.name;
